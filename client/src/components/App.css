@@ -1,0 +1,97 @@
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+li
+{
+  list-style: none;
+  background-color: white;
+  
+}
+
+a
+{
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+
+a:hover
+{
+  color:blue
+}
+
+.Visibility{
+  visibility: hidden;
+}
+
+.dropdown-item{
+  width: 60px;
+  background-color:'red';
+  
+}
+
+.App {
+  text-align: center;
+  background-color: #fafafa;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+#signout{
+  color:rgb(85, 26, 139);
+}
+
+#signout:hover{
+  color: blue;
+  cursor:pointer;
+}
+#post-container-list{
+  margin: 0px;
+  padding: 5px;
+}
+
+#post-container-list li{
+color:#757373;
+padding-left: 20px;
+margin: 2px;
+
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
