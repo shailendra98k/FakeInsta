@@ -12,7 +12,7 @@ function Comment(props) {
 
     const deleteComment=function(){
      
-        axios.get(`http://localhost:5000/delete/comment/${props.comment._id}`)
+        axios.get(`http://localhost:8000/delete/comment/${props.comment._id}`)
         .then((res)=>{
              loginInfo.setRefresh(loginInfo.refresh+1);
         })

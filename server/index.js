@@ -1,15 +1,16 @@
 const express = require('express')
 const app = express()
-const port = 5000
+const port = 8000
 const mongoose = require('./config/mongoose');
 const User = require('./Model/user');
 const Post = require('./Model/post');
+var cors = require('cors');
 const Comment = require('./Model/comment');
 const fileUpload=require('express-fileupload')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser());
-
+app.use(cors());
 app.get('/', function (req, res) {
     return res.send("Hi");
 });

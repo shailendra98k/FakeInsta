@@ -8,7 +8,7 @@ function Friends(){
     const [users,setUsers]=React.useState([]);
      
     React.useEffect( ()=>{
-    axios.get('http://localhost:5000/user/get')
+    axios.get('http://localhost:8000/user/get')
     .then((users)=>{
         console.log("User Received", users);
         setUsers( users.data);

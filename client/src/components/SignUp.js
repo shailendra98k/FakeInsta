@@ -34,7 +34,7 @@ function SignUp() {
   e.preventDefault();
   
 
-  axios.post('http://localhost:5000/user/signUp',{
+  axios.post('http://localhost:8000/user/signUp',{
     username: username,
     password: password
 

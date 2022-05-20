@@ -51,14 +51,14 @@ function AddImage() {
             formdata.append("image", blob);
 
 
-            axios.post('http://localhost:5000/post/image/add', formdata, {
+            axios.post('http://localhost:8000/post/image/add', formdata, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then((res) => {
                 console.log("Response", res)
 
-                axios.post('http://localhost:5000/post/add', {
+                axios.post('http://localhost:8000/post/add', {
 
                     user: JSON.parse(localStorage.getItem('userDetails')),
                     photos: res.data.filename

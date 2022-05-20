@@ -25,7 +25,7 @@ function AddPostForm() {
         
         if (desc.length == 0) { alert("Post cant be emprty!!") }
         else {
-            axios.post('http://localhost:5000/post/add', {
+            axios.post('http://localhost:8000/post/add', {
                 description: desc,
                 user: JSON.parse(localStorage.getItem('userDetails'))
             })

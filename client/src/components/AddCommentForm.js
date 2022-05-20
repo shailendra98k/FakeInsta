@@ -24,7 +24,7 @@ function Comment(props) {
 
         if (desc.length == 0) { alert("Comment cant be emprty!!") }
         else {
-            axios.post('http://localhost:5000/comment/add', {
+            axios.post('http://localhost:8000/comment/add', {
                 description: desc,
                 user:JSON.parse(localStorage.getItem('userDetails')) ,
                 post: props.postId

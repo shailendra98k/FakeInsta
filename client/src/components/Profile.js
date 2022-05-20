@@ -14,7 +14,7 @@ function Profile() {
     const loginInfo = React.useContext(loginInfoContext);
     const [posts, setPosts] = useState([]);
 
-    const url = `http://localhost:5000/user/post/get`;
+    const url = `http://localhost:8000/user/post/get`;
     useEffect(() => {
         console.log("In Profile Effect")
         axios.get(url)

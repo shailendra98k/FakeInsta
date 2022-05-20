@@ -22,7 +22,7 @@ function Post(props) {
 
     const deletePost = function () {
 
-        axios.get(`http://localhost:5000/delete/post/${props.post._id}`)
+        axios.get(`http://localhost:8000/delete/post/${props.post._id}`)
             .then((res) => {
 
                 loginInfo.setRefresh(loginInfo.refresh + 1);

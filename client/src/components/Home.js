@@ -18,7 +18,7 @@ function Home() {
     console.log(posts); 
     useEffect(() => {
 
-        if (props.auth) axios.get(`http://localhost:5000/user/post/get`)
+        if (props.auth) axios.get(`http://localhost:8000/user/post/get`)
             .then((res) => {
                 console.log("Refresh ",props.refresh)
                 // setPosts(res.data)
