@@ -35,7 +35,7 @@ export default function PostCard({ post }) {
     setExpanded(!expanded);
   };
   console.log("Post is: ", post)
-
+ 
   return (
     <Card style={{margin:'auto',marginBottom:10}} id={post.id} sx={{ maxWidth: 600 }}>
       <CardHeader
@@ -55,13 +55,13 @@ export default function PostCard({ post }) {
       />
       <CardMedia
         component="img"
-        height="194"
-        // image={require(`../upload/${post.photos}.jpg`)}
+        height="600"
+        image={require(`../upload/${post.photos}.jpg`)}
         // image={require('../upload/'+post.photos+'.jpg')}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-
+            
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
