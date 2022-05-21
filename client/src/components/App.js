@@ -45,9 +45,6 @@ function App( )
      <loginInfoContext.Provider value={loginInfo}>
          <Router>
             <Switch>
-
-            
-               
                 <Route exact path="/"  render={()=> <Home  />  } />
                 {/* <Route exact path="/signIn" render={()=> <SignIn  /> }/>  */}
                 <Route exact path="/signIn" component={SignIn} /> 

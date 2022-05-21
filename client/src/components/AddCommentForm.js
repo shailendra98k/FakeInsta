@@ -45,7 +45,7 @@ function Comment(props) {
            <div style={{display:'flex'}}>
                 <br></br>
                 <hr />
-                <textarea id={`addCommentForm${props.postId}`} placeholder='Add a comment' required={true} onKeyUp={onKeyUpHandler} type='text' style={{ width:'90%', border:'0px', resize:'none'}} />
+                <textarea id={`addCommentForm${props.postId}`} placeholder='Add a comment' required={true} onKeyUp={onKeyUpHandler} type='text' style={{ width:'90%',paddingLeft:'16px', border:'0px', resize:'none'}} />
                 <label for={`addCommentForm${props.postId}`}>  <a  href='#' onClick={onClickHandler}>comment </a>  </label>             
  
            </div>

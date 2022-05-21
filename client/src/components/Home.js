@@ -6,7 +6,7 @@ import './App.css'
 import Friends from './Friends'
 import Guest from './Guest'
 import Header from './Header'
-
+import PostCard from '../components/MaterialUIComp/Card'
 const axios = require('axios');
 
 
@@ -20,10 +20,7 @@ function Home() {
 
         if (props.auth) axios.get(`http://localhost:8000/user/post/get`)
             .then((res) => {
-                console.log("Refresh ",props.refresh)
-                // setPosts(res.data)
-                console.log("Refresh ",props.refresh)
-                
+                setPosts(res.data)     
             })
             .catch((err) => {
                 console.log(err);
@@ -35,25 +32,21 @@ function Home() {
         
     })
     
-    
-
-   
-
-   
 
     const srcCode = <div id='home'>
 
       
-        <div id='container' style={{ display: 'flex', marginTop:'11px'}}>
+        <div id='container' style={{  paddingTop:70}}>
 
             <div id='feeds' style={{ width: '100%', height: '800px' }}>
                 <div id='post-container'>
                     <ul id='post-container-list'>
 
                         {
-                        posts.map((post) => {
-                            return <Post post={post} />
-                        })}
+                            posts.map((post) => {
+                                return <Post key={post.id} post={post}/> 
+                            })
+                        }
 
                     </ul>
                 </div>

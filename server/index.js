@@ -8,7 +8,8 @@ var cors = require('cors');
 const Comment = require('./Model/comment');
 const fileUpload=require('express-fileupload')
 
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const post = require('./Model/post');
 app.use(bodyParser());
 app.use(cors());
 app.get('/', function (req, res) {
@@ -18,16 +19,32 @@ app.get('/', function (req, res) {
 app.get('/user/post/get', function (req, res) {
 
     Post.find({})
-        .exec((err, post) => {
+        .exec((err, posts) => {
             if (err) {
                 console.log(err);
                 return res.send(err);
             }
-            let myRes={
-                "data":post,
-                "sender":"Chutiya"
-            }
-            res.send(myRes);
+            var resData =[];
+
+            posts.map( (post)=>{
+                resData.push({
+                    "id":post._id,
+                    "user":{
+                        "id": post.user._id,
+                        "username":post.user.username
+                    },
+                    "photos":post.photos,
+                    "comments": post.comments.map((comment)=>{
+                      return {
+                          "id":comment._id,
+                          "description":comment.description,
+                          "user_username":comment.user.username
+                      }
+                    }),
+                    "createdAt":post.createdAt,
+                })
+            })
+            return res.send(resData);
         })
 });
 
@@ -135,7 +152,7 @@ app.post('/post/image/add',(req,res)=>{
 
     const imagename=Date.now();
    
-    image.mv(`../client/public/upload/${imagename}.jpg` , (err)=>{
+    image.mv(`../client/src/upload/${imagename}.jpg` , (err)=>{
         if(err)
         { 
             console.log("error in moving image iin server",err);
