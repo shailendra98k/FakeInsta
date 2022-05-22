@@ -16,37 +16,18 @@ app.get('/', function (req, res) {
     return res.send("Hi");
 });
 
-app.get('/user/post/get', function (req, res) {
-
-    Post.find({})
+app.get("/user/:userId/posts",(req,res)=>{
+    //Returns all the post created by the user themselves.
+    Post.find({'user':req.params.userId}).populate({ path: 'user', select: 'username firstName'})
         .exec((err, posts) => {
             if (err) {
                 console.log(err);
                 return res.send(err);
             }
-            var resData =[];
-
-            posts.map( (post)=>{
-                resData.push({
-                    "id":post._id,
-                    "user":{
-                        "id": post.user._id,
-                        "username":post.user.username
-                    },
-                    "photos":post.photos,
-                    "comments": post.comments.map((comment)=>{
-                      return {
-                          "id":comment._id,
-                          "description":comment.description,
-                          "user_username":comment.user.username
-                      }
-                    }),
-                    "createdAt":post.createdAt,
-                })
-            })
-            return res.send(resData);
+            return res.send(posts)
         })
-});
+})
+
 
 
 app.post('/post/add', function (req, res) {
@@ -236,6 +217,28 @@ app.get('/user/get', (req, res) => {
 })
 
 
+
+
+app.get('/user/:id',(req,res)=>{
+    User.findById(req.params.id).then((user)=>{
+        res.send(user)
+    }).catch((err)=>{
+        console.log("Error in fetchig users,", err)
+    })
+
+})
+
+app.patch('/user/:id',(req,res)=>{
+    User.findById(req.params.id).then((user)=>{
+        for(key in req.body){
+            user[key]=req.body[key];
+        }
+        user.save();
+        res.send("Updated")
+    }).catch((err)=>{
+        console.log("Error in fetchig users,", err)
+    })
+})
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

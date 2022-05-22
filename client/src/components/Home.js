@@ -6,7 +6,6 @@ import './App.css'
 import Friends from './Friends'
 import Guest from './Guest'
 import Header from './Header'
-import PostCard from '../components/MaterialUIComp/Card'
 const axios = require('axios');
 
 
@@ -17,8 +16,7 @@ function Home() {
 
     console.log(posts); 
     useEffect(() => {
-
-        if (props.auth) axios.get(`http://localhost:8000/user/post/get`)
+        if (props.auth) axios.get(`http://localhost:8000/user/${JSON.parse(localStorage.getItem('userDetails'))._id}/posts`)
             .then((res) => {
                 setPosts(res.data)     
             })

@@ -1,5 +1,5 @@
 const mongoose = require('../config/mongoose');
-const Schema = mongoose.Schema;
+const {Schema} = mongoose;
 
 const Post = new Schema({
 
@@ -7,7 +7,7 @@ const Post = new Schema({
         type: String
     },
     user: {
-        type: Object
+         type: Schema.Types.ObjectId, ref: 'User'  
     },
     comments:{
           type:Array

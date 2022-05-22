@@ -60,7 +60,7 @@ function AddImage() {
 
                 axios.post('http://localhost:8000/post/add', {
 
-                    user: JSON.parse(localStorage.getItem('userDetails')),
+                    user: JSON.parse(localStorage.getItem('userDetails'))._id,
                     photos: res.data.filename
 
 
