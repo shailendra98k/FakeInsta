@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 import { loginInfoContext } from './App'
 const axios = require('axios');
 
 function AddPostForm() {
-    
+    const history = useHistory();
     const loginInfo = useContext(loginInfoContext);
     const [desc, setDesc] = useState("");
 
@@ -32,6 +33,7 @@ function AddPostForm() {
             .then((res) => {
                 console.log(res);
                 loginInfo.setRefresh(loginInfo.refresh +1 );
+                history.push("/")
 
             })
             .catch((err) => {

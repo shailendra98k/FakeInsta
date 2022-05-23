@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useHistory } from 'react-router-dom';
 import Cropper from 'cropperjs';
 import $ from 'jquery'
 import 'cropperjs/dist/cropper.css'
@@ -21,7 +21,7 @@ function AddImage() {
     const loginInfo = React.useContext(loginInfoContext);
     const [filename, setFilename] = React.useState("Choose File")
     const [file, setFile] = React.useState('')
-
+    const history = useHistory();
     var cropper;
     const onChangeHandler = (e) => {
 
@@ -60,7 +60,7 @@ function AddImage() {
 
                 axios.post('http://localhost:8000/post/add', {
 
-                    user: JSON.parse(localStorage.getItem('userDetails')),
+                    user: JSON.parse(localStorage.getItem('userDetails'))._id,
                     photos: res.data.filename
 
 
@@ -68,6 +68,7 @@ function AddImage() {
                     .then((res) => {
                         console.log(res);
                         loginInfo.setRefresh(loginInfo.refresh + 1);
+                        history.push("/")
 
                     })
                     .catch((err) => {

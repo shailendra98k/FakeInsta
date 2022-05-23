@@ -28,7 +28,7 @@ function Header() {
 
     return (
         <React.Fragment>
-            <div  style={{backgroundColor:'white',display:'flex', justifyContent:'center',padding:'10px', borderBottom:'1px solid lightgrey', position:'fixed', top:'0px', width:'100%'}}>
+            <div  style={{backgroundColor:'white',display:'flex', justifyContent:'center',padding:'10px',marginBottom:40, borderBottom:'1px solid lightgrey', position:'fixed', zIndex:2, top:'0px', width:'100%'}}>
                 <div style={{backgroundColor:'white', display:'flex',justifyContent:'space-between',width:'70%'}}>
                     <div> <span style={{fontFamily:'cursive'}}>Fake Instagram </span> </div>
                     <div > <input style={{width:'200px', height:'30px',color:'lightgrey', border:'1px solid lightgrey'}} placeholder='    Search' type='text'/> </div>

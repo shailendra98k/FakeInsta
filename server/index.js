@@ -8,29 +8,15 @@ var cors = require('cors');
 const Comment = require('./Model/comment');
 const fileUpload=require('express-fileupload')
 
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const post = require('./Model/post');
 app.use(bodyParser());
 app.use(cors());
 app.get('/', function (req, res) {
     return res.send("Hi");
 });
 
-app.get('/user/post/get', function (req, res) {
-
-    Post.find({})
-        .exec((err, post) => {
-            if (err) {
-                console.log(err);
-                return res.send(err);
-            }
-            let myRes={
-                "data":post,
-                "sender":"Chutiya"
-            }
-            res.send(myRes);
-        })
-});
-
+app.use('/user',require('./Controller/user'));
 
 app.post('/post/add', function (req, res) {
 
@@ -70,62 +56,6 @@ app.post('/comment/add', function (req, res) {
 
 })
 
-
-app.post('/user/signIn', function (req, res) {
-    console.log(req.body);
-    User.findOne({
-        username: req.body.username,
-        password: req.body.password
-    }, function (err, user) {
-        if (err) {
-            console.log("Error in Signing In...", err);
-            res.redirect('back');
-        }
-        if (user) {
-            console.log(user);
-            res.cookie(user._id, user.username, { httpOnly: true });
-            res.json(
-                {
-                    data: user,
-                    statusCode: 200
-                }
-            );
-        }
-        else {
-            console.log("Invalid Username or Password");
-            res.json(
-                {
-                    statusCode: 401
-                });
-        }
-    })
-});
-
-app.post('/user/signUp', function (req, res) {
-
-    console.log(req.body);
-
-    User.findOne({ username: req.body.username }, function (err, user) {
-        if (err) {
-            console.log("Error in Signing Up...", err);
-            res.redirect('back');
-        }
-        if (user) {
-            console.log("User already Exist...");
-            return res.json({
-                statusCode: 401
-            })
-        }
-        else {
-            User.create(req.body);
-            return res.json({
-                statusCode: 200
-            })
-
-        }
-    })
-});
-
 app.use(fileUpload() );
 app.post('/post/image/add',(req,res)=>{
 
@@ -135,7 +65,7 @@ app.post('/post/image/add',(req,res)=>{
 
     const imagename=Date.now();
    
-    image.mv(`../client/public/upload/${imagename}.jpg` , (err)=>{
+    image.mv(`../client/src/upload/${imagename}.jpg` , (err)=>{
         if(err)
         { 
             console.log("error in moving image iin server",err);
@@ -209,16 +139,6 @@ app.get('/delete/post/:id', function (req, res) {
         })
 
 })
-
-app.get('/user/get', (req, res) => {
-
-    User.find().then((users) => {
-        res.send(users);
-    }).catch(err => { console.log("Error in fetchig users,", err) })
-
-})
-
-
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
